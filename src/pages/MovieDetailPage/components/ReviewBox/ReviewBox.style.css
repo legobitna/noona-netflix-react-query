@@ -1,0 +1,31 @@
+.review-box{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border: 2px solid red;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 15px;
+    
+    
+    
+}
+.text-box{
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out; 
+}
+
+.expanded{
+    max-height: none; 
+}
+.fold{
+    max-height: 100px;
+}
+
+.more-button{
+    background: none;
+    border: none;
+    color: lightgrey;
+    font-weight: bold;
+    text-decoration: underline;
+
+}
