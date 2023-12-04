@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 const fetchMovieTrailer = (queryData) => {
   const id = queryData.queryKey[1];
-  return api.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
+  return api.get(`/movie/${id}/videos?language=en-US`);
 };
 
 export const useMovieTrailerQuery = (id) => {

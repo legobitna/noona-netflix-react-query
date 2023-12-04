@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MovieCard.style.css";
 import Badge from "react-bootstrap/Badge";
 import { useNavigate } from "react-router-dom";
