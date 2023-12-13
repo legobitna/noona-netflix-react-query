@@ -1,9 +1,9 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import YouTube from "react-youtube";
-import { useMovieTrailerQuery } from "../../../../hooks/useMovieTrailer";
+import { useMovieTrailerQuery } from "../../hooks/useMovieTrailer";
 import "./MovieModal.style.css";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 import { Spinner } from "react-bootstrap";
 
 const MovieModal = ({ movie, ...props }) => {
@@ -19,17 +19,16 @@ const MovieModal = ({ movie, ...props }) => {
     movie.id
   );
 
-
   const modalContent = () => {
     if (isLoading || isFetching) {
       return (
         <div className="spinner-area">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "5rem", height: "5rem" }}
-        />
-      </div>
+          <Spinner
+            animation="border"
+            variant="danger"
+            style={{ width: "5rem", height: "5rem" }}
+          />
+        </div>
       );
     }
     if (isError) {

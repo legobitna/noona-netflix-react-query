@@ -2,10 +2,11 @@ import React from "react";
 import { responsive } from "../../../constants/responsive";
 import { Alert, Spinner } from "react-bootstrap";
 import { useUpcomingMoviesQuery } from "../../../hooks/useUpcomingMovies";
-import MovieSlider from "./MovieSlider/MovieSlider";
+
+import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 
 const UpcomingMovieSlider = () => {
-  const { data, isLoading, error,isError } = useUpcomingMoviesQuery();
+  const { data, isLoading, error, isError } = useUpcomingMoviesQuery();
   if (isLoading) {
     return (
       <div className="spinner-area">
@@ -34,4 +35,3 @@ const UpcomingMovieSlider = () => {
 };
 
 export default UpcomingMovieSlider;
-

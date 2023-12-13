@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetail";
 import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import "./MovieDetailPage.style.css";
-import Banner from "../HomePage/components/Banner/Banner";
-import MovieSlider from "../HomePage/components/MovieSlider/MovieSlider";
+import Banner from "../../common/Banner/Banner";
+import MovieSlider from "../../common/MovieSlider/MovieSlider";
 import { useRelatedMoviesQuery } from "../../hooks/useRelatedMovies";
 import Reviews from "./components/Reviews";
 import { numberWithCommas } from "../../utils/number";
@@ -49,7 +49,7 @@ const MovieDetailPage = () => {
     );
   }
   if (isError) {
-    return <Alert variant='danger'>{error.message}</Alert>
+    return <Alert variant="danger">{error.message}</Alert>;
   }
   return (
     <>
@@ -128,7 +128,7 @@ const MovieDetailPage = () => {
             responsive={relatedMovieResponsive}
           />
         )}
-        <Reviews id={id}/>
+        <Reviews id={id} />
       </Container>
     </>
   );

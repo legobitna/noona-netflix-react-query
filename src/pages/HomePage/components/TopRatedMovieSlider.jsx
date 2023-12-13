@@ -2,10 +2,10 @@ import React from "react";
 import { useTopRatedMoviesQuery } from "../../../hooks/useTopRatedMovies";
 import { responsive } from "../../../constants/responsive";
 import { Alert, Spinner } from "react-bootstrap";
-import MovieSlider from "./MovieSlider/MovieSlider";
+import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 
 const TopRatedMovieSlider = () => {
-  const { data, isLoading, error,isError } = useTopRatedMoviesQuery();
+  const { data, isLoading, error, isError } = useTopRatedMoviesQuery();
   if (isLoading) {
     return (
       <div className="spinner-area">

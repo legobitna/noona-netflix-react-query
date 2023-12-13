@@ -1,11 +1,11 @@
 import React from "react";
-import Banner from "./Banner/Banner";
+import Banner from "../../../common/Banner/Banner";
 import { usePopularMoviesQuery } from "../../../hooks/usePopularMovies";
 import { Alert, Spinner } from "react-bootstrap";
 
 const HomepageBanner = () => {
   const { isLoading, data, error, isError } = usePopularMoviesQuery();
-  console.log("dddd", data,isLoading);
+  console.log("dddd", data, isLoading);
   if (isLoading) {
     return (
       <div className="spinner-area">
