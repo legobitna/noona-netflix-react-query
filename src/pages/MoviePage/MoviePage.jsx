@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSearchMoviesQuery } from "../../hooks/useSearchMovies";
 import Spinner from "react-bootstrap/Spinner";
-import { Alert, Col, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import MovieCard from "../../common/MovieCard/MovieCard";
 import { usePopularMoviesQuery } from "../../hooks/usePopularMovies";
 import ReactPaginate from "react-paginate";
@@ -10,9 +10,10 @@ import ReactPaginate from "react-paginate";
 const MoviePage = () => {
   const [isAsc, setAsc] = useState(false);
   const [query, setQuery] = useSearchParams();
+
   const keyword = query.get("q");
   const [page, setPage] = useState(1);
-  const [data,setData] = useState(null)
+  const [data, setData] = useState(null);
   // const {
   //   isLoading: isPopularMovieLoading,
   //   isError: isPopularmovieError,
@@ -23,8 +24,14 @@ const MoviePage = () => {
   //   select: (data) => data.data,
   // });
 
-  const { isLoading, isError, error, data:searchData } = useSearchMoviesQuery({ // 쿼리 a 
-    keyword, 
+  const {
+    isLoading,
+    isError,
+    error,
+    data: searchData,
+  } = useSearchMoviesQuery({
+    // 쿼리 a
+    keyword,
     page,
   });
 
@@ -53,29 +60,29 @@ const MoviePage = () => {
     }
   }, [searchData]);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="spinner-area">
-  //       <Spinner
-  //         animation="border"
-  //         variant="danger"
-  //         style={{ width: "5rem", height: "5rem" }}
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="spinner-area">
+        <Spinner
+          animation="border"
+          variant="danger"
+          style={{ width: "5rem", height: "5rem" }}
+        />
+      </div>
+    );
+  }
 
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }
 
   return (
-    <div>
+    <Container>
       <Row>
-        <Col lg={2} xs={12}>
+        <Col lg={4} xs={12}>
           <button onClick={sortMovie}>sort By</button>
         </Col>
-        <Col lg={10} xs={12}>
+        <Col lg={8} xs={12}>
           {data?.results.length === 0 ? (
             <div>{keyword} 와 일치하는 영화가 없습니다.</div>
           ) : (
@@ -100,6 +107,7 @@ const MoviePage = () => {
             previousLinkClassName="page-link"
             nextClassName="page-item"
             nextLinkClassName="page-link"
+            t
             breakClassName="page-item"
             breakLinkClassName="page-link"
             containerClassName="pagination"
@@ -108,7 +116,7 @@ const MoviePage = () => {
           />
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 

@@ -12,6 +12,7 @@ export const useMovieGenreQuery = () => {
     select: (data) => {
       return data.data.genres;
     },
+
     staleTime: 300000, // 5분 (ms 단위)
   });
 };

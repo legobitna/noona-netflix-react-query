@@ -4,6 +4,7 @@ import api from "../utils/api";
 const fetchSearchMovies = ({ queryKey }) => {
   const keyword = queryKey[1];
   const page = queryKey[2];
+
   return keyword
     ? api.get(`/search/movie?query=${keyword}&page=${page}`)
     : api.get(`/movie/popular?language=en-US&page=${page}`);
@@ -16,12 +17,6 @@ export const useSearchMoviesQuery = ({ keyword, page }) => {
     queryFn: fetchSearchMovies,
     select: (data) => {
       return data.data;
-    },
-    placeholderData: () => {
-      const results = queryClient.getQueryData(["movie-search", 1]);
-
-      console.log("rrr", results);
-      return results;
     },
   });
 };
