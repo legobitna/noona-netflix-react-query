@@ -1,12 +1,14 @@
 import React from "react";
-import { responsive } from "../../../constants/responsive";
-import { useUpcomingMoviesQuery } from "../../../hooks/useUpcomingMovies";
 import LoadingSpinner from "../../../common/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "../../../common/ErrorMessage";
+import { useRelatedMoviesQuery } from "../../../hooks/useRelatedMovies";
+import { relatedMovieResponsive } from "../../../constants/responsive";
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
 
-const UpcomingMovieSlider = () => {
-  const { data, isLoading, error, isError } = useUpcomingMoviesQuery();
+const RelatedMovie = ({ id }) => {
+  const { data, isLoading, isError,error } =
+    useRelatedMoviesQuery(id);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -15,11 +17,11 @@ const UpcomingMovieSlider = () => {
   }
   return (
     <MovieSlider
-      title="Top rated Movies"
+      title="Related Movies"
       movies={data.results}
-      responsive={responsive}
+      responsive={relatedMovieResponsive}
     />
   );
 };
 
-export default UpcomingMovieSlider;
+export default RelatedMovie;

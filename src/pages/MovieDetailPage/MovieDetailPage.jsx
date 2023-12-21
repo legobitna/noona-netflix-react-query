@@ -1,55 +1,24 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetail";
-import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "./MovieDetailPage.style.css";
 import Banner from "../../common/Banner/Banner";
-import MovieSlider from "../../common/MovieSlider/MovieSlider";
-import { useRelatedMoviesQuery } from "../../hooks/useRelatedMovies";
 import Reviews from "./components/Reviews";
 import { numberWithCommas } from "../../utils/number";
-
-const relatedMovieResponsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 6,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "../../common/ErrorMessage";
+import RelatedMovie from "./components/RelatedMovie";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
-
-  const { data, isLoading, isFetching, isError, error } =
-    useMovieDetailQuery(id);
-  const { data: relatedMovies, isLoading: isRelatedMovieLoading } =
-    useRelatedMoviesQuery(id);
+  const { data, isLoading, isError, error } = useMovieDetailQuery(id);
 
   if (isLoading) {
-    return (
-      <div className="spinner-area">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "5rem", height: "5rem" }}
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   if (isError) {
-    return <Alert variant="danger">{error.message}</Alert>;
+    return <ErrorMessage error={error} />;
   }
   return (
     <>
@@ -74,7 +43,6 @@ const MovieDetailPage = () => {
             <h3>{data.data.tagline}</h3>
             <div className="py-4 movie-number  border-bottom border-white">
               <span>
-                {" "}
                 <img src="/IMDB.png" width={30} className="me-1" />
                 {data.data.vote_average}
               </span>
@@ -83,7 +51,6 @@ const MovieDetailPage = () => {
                 {data.data.popularity}
               </span>
               <span>
-                {" "}
                 {data.data.adult ? (
                   <img src={"/over18.svg"} width={30} className="ms-2" />
                 ) : (
@@ -117,17 +84,7 @@ const MovieDetailPage = () => {
             </div>
           </Col>
         </Row>
-        {isRelatedMovieLoading ? (
-          <div class="spinner-border text-danger" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        ) : (
-          <MovieSlider
-            title="Related Movies"
-            movies={relatedMovies?.data.results}
-            responsive={relatedMovieResponsive}
-          />
-        )}
+        <RelatedMovie id={id} />
         <Reviews id={id} />
       </Container>
     </>

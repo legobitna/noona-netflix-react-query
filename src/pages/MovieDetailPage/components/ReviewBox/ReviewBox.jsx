@@ -10,7 +10,7 @@ const ReviewBox = ({ review }) => {
       </p>
       {review.content.length > 680 ? (
         <button className="more-button" onClick={() => setExpended(!expanded)}>
-          {expanded?'접기':'더보기'}
+          {expanded ? "접기" : "더보기"}
         </button>
       ) : (
         <></>

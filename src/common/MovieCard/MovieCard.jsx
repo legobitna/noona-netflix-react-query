@@ -2,15 +2,13 @@ import React from "react";
 import "./MovieCard.style.css";
 import Badge from "react-bootstrap/Badge";
 import { useNavigate } from "react-router-dom";
-import {useMovieGenreQuery} from "../../hooks/useMovieGenre"
+import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
-
-  const {data:genres}=useMovieGenreQuery()
-
+  const { data: genres } = useMovieGenreQuery();
 
   const showGenre = (genreIdList) => {
-    if(!genres) return []
+    if (!genres) return [];
     const genresNameList = genreIdList.map((id) => {
       const genreObj = genres.find((genre) => genre.id === id);
       return genreObj.name;
@@ -42,7 +40,7 @@ const MovieCard = ({ movie }) => {
         </div>
         <div className="mt-2">
           <img src="/IMDB.png" width={20} className="me-1" />
-          {movie.vote_average}
+          {movie.popularity}
           {movie.adult ? (
             <img src={"/over18.svg"} width={20} />
           ) : (

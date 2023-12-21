@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Homepage.style.css";
 import PopularMovieSlider from "./components/PopularMovieSlider";
 import TopRatedMovieSlider from "./components/TopRatedMovieSlider";
 import UpcomingMovieSlider from "./components/UpcomingMovieSlider";
@@ -22,12 +21,10 @@ const HomePage = () => {
     };
   }, []);
 
- 
   return (
     <div>
-       <HomepageBanner/>
+      <HomepageBanner />
       <div className={isMobile ? "px-3" : "px-5"}>
-       
         <PopularMovieSlider />
         <TopRatedMovieSlider />
         <UpcomingMovieSlider />

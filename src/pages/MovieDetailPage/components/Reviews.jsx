@@ -1,25 +1,17 @@
 import React from "react";
 import { useMovieReviewsQuery } from "../../../hooks/useMovieReviews";
-import { Alert, Spinner } from "react-bootstrap";
 import ReviewBox from "./ReviewBox/ReviewBox";
+import LoadingSpinner from "../../../common/LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "../../../common/ErrorMessage";
 
 const Reviews = ({ id }) => {
+  const { data, isLoading, isError, error } = useMovieReviewsQuery(id);
 
-  const { data, isLoading, isFetching, isError, error } =
-    useMovieReviewsQuery(id);
-  if (isLoading || isFetching) {
-    return (
-      <div className="spinner-area">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "5rem", height: "5rem" }}
-        />
-      </div>
-    );
+  if (isLoading) {
+    return <LoadingSpinner />;
   }
   if (isError) {
-    return <Alert variant="danger">{error.message}</Alert>;
+    return <ErrorMessage error={error} />;
   }
   return (
     <div>
@@ -29,7 +21,7 @@ const Reviews = ({ id }) => {
         <div className="mb-5">0 reviews for this movie</div>
       ) : (
         data.data.results.map((review, index) => (
-          <ReviewBox review={review} key={index}/>
+          <ReviewBox review={review} key={index} />
         ))
       )}
     </div>

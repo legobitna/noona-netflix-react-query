@@ -1,0 +1,21 @@
+.r-page-link {
+  color: red;
+  background-color: black;
+  border: none;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.active > .r-page-link {
+  color: white;
+  background: red;
+}
+
+.r-page-link:hover {
+  color: white;
+  background: red;
+}
+
+.movie-card-box {
+  height: 300px;
+}

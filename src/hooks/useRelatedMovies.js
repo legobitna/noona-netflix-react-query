@@ -10,5 +10,8 @@ export const useRelatedMoviesQuery = (id) => {
   return useQuery({
     queryKey: ["movie-related", id],
     queryFn: fetchRelatedMovies,
+    select: (data) => {
+      return data.data;
+    },
   });
 };

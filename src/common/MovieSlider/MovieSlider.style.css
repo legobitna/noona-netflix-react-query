@@ -1,13 +1,19 @@
- .carousel-container{
-    overflow-x:hidden;
-    overflow-y: visible;
-    height: 440px;
- }
-
- @media (max-width:480px)  { 
-    .carousel-container{
-        height:250px;
-        display: flex;
-        justify-content: space-between;
-    }
- }
+.carousel-container {
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 500px;
+}
+.sliderClass {
+  height: 90%;
+}
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 290px;
+    display: flex;
+    overflow-y: hidden;
+    justify-content: space-between;
+  }
+  .sliderClass {
+    height: 100%;
+  }
+}

@@ -4,7 +4,8 @@ import YouTube from "react-youtube";
 import { useMovieTrailerQuery } from "../../hooks/useMovieTrailer";
 import "./MovieModal.style.css";
 import Alert from "react-bootstrap/Alert";
-import { Spinner } from "react-bootstrap";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "../ErrorMessage";
 
 const MovieModal = ({ movie, ...props }) => {
   const opts = {
@@ -15,29 +16,15 @@ const MovieModal = ({ movie, ...props }) => {
       autoplay: 1,
     },
   };
-  const { data, isLoading, isFetching, isError, error } = useMovieTrailerQuery(
-    movie.id
-  );
+  const { data, isLoading, isError, error } = useMovieTrailerQuery(movie.id);
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return <ErrorMessage error={error} />;
+  }
   const modalContent = () => {
-    if (isLoading || isFetching) {
-      return (
-        <div className="spinner-area">
-          <Spinner
-            animation="border"
-            variant="danger"
-            style={{ width: "5rem", height: "5rem" }}
-          />
-        </div>
-      );
-    }
-    if (isError) {
-      return (
-        <Alert key="danger" variant="danger">
-          {error.message}
-        </Alert>
-      );
-    }
     if (data.data.results.length === 0) {
       return (
         <Alert key="danger" variant="danger">

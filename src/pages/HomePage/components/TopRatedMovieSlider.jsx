@@ -1,33 +1,22 @@
 import React from "react";
 import { useTopRatedMoviesQuery } from "../../../hooks/useTopRatedMovies";
 import { responsive } from "../../../constants/responsive";
-import { Alert, Spinner } from "react-bootstrap";
 import MovieSlider from "../../../common/MovieSlider/MovieSlider";
+import LoadingSpinner from "../../../common/LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "../../../common/ErrorMessage";
 
 const TopRatedMovieSlider = () => {
   const { data, isLoading, error, isError } = useTopRatedMoviesQuery();
   if (isLoading) {
-    return (
-      <div className="spinner-area">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "5rem", height: "5rem" }}
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   if (isError) {
-    return (
-      <Alert key="danger" variant="danger">
-        {error.message}
-      </Alert>
-    );
+    return <ErrorMessage error={error} />;
   }
   return (
     <MovieSlider
       title="Top rated Movies"
-      movies={data.data.results}
+      movies={data.results}
       responsive={responsive}
     />
   );
