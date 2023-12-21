@@ -12,7 +12,7 @@ const HomepageBanner = () => {
   if (isError) {
     return <ErrorMessage error={error} />;
   }
-  return <Banner movie={data?.data.results[0]} />;
+  return <Banner movie={data.results[0]} />;
 };
 
 export default HomepageBanner;
