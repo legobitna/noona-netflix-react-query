@@ -17,7 +17,7 @@ const AppLayout = () => {
       <Navbar expand="lg" className="px-5 bg-black" data-bs-theme="dark">
         <Link to={"/"}>
           <Navbar.Brand className="me-4">
-            <img src="/Logonetflix.png" width={93} />
+            <img src="/netflixLogoSvg.svg" width={93} />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
