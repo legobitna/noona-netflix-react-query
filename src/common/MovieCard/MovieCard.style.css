@@ -18,6 +18,13 @@
 .overlay h1 {
   font-size: 2rem;
   padding-bottom: 10px;
+  white-space: normal; /* 줄바꿈 허용 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 말줄임표 추가 */
+  display: -webkit-box; /* Flexbox로 2줄 제한 */
+  -webkit-line-clamp: 2; /* 최대 2줄까지만 표시 */
+  -webkit-box-orient: vertical; /* 수직 방향으로 설정 */
+  
 }
 @media (min-width: 480px) {
   .movie-card:hover {

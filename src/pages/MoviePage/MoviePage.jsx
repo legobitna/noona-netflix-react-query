@@ -10,7 +10,7 @@ import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "../../common/ErrorMessage";
 
 const MoviePage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const [sort, setSort] = useState("");
   const keyword = query.get("q");
   const [page, setPage] = useState(1);
@@ -69,6 +69,9 @@ const MoviePage = () => {
       filterMovieByGenre();
     }
   }, [genre]);
+  useEffect(() => {
+    setPage(1);
+  }, [keyword]); // 이거 추가
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -94,8 +97,8 @@ const MoviePage = () => {
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={5}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={1}
           pageCount={data?.total_pages > 500 ? 500 : data?.total_pages}
           previousLabel="<"
           pageClassName="r-page-item"
@@ -111,6 +114,8 @@ const MoviePage = () => {
           activeClassName="active"
           renderOnZeroPageCount={null}
           forcePage={page - 1}
+          nextRel={null}
+          nextPageRel={null}
         />
       </div>
     </Container>

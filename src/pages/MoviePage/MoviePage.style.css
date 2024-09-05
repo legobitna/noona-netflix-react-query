@@ -2,8 +2,11 @@
   color: red;
   background-color: black;
   border: none;
-  padding: 15px;
+  padding: 8px 6px; /* 아이템의 내부 여백을 조정하여 크기를 줄임 */
   text-decoration: none;
+  text-align: center; /* 텍스트 가운데 정렬 */
+  display: block; /* 블록 요소로 설정하여 전체 링크 영역을 클릭 가능하게 함 */
+  font-size: 0.8rem; /* 글자 크기를 줄여서 공간 절약 */
 }
 
 .active > .r-page-link {
@@ -19,3 +22,25 @@
 .movie-card-box {
   height: 300px;
 }
+.pagination {
+  display: flex;
+  flex-wrap: wap; /* 페이지네이션이 화면 크기에 맞춰 줄바꿈되도록 설정 */
+  justify-content: center; /* 가운데 정렬 */
+  gap: 8px; /* 각 페이지네이션 아이템 간의 간격 */
+  margin: 0; /* 기본 여백 제거 */
+  padding: 0; /* 기본 여백 제거 */
+  overflow: hidden; /* 페이지네이션이 넘칠 때 가로 스크롤을 방지 */
+  width: 100%; /* 부모 요소의 크기를 100%로 설정 */
+  max-width: 100%; /* 부모 요소의 최대 크기를 100%로 설정 */
+  list-style: none; /* 기본 리스트 스타일 제거 */
+}
+
+.r-page-item {
+  flex: 1 1 auto; /* 아이템의 크기가 부모 요소에 맞춰 자동으로 크기 조정되도록 설정 */
+  min-width: 30px; /* 각 아이템의 최소 너비를 설정하여 너무 작아지지 않도록 함 */
+  max-width: 50px; /* 각 아이템의 최대 너비를 설정하여 아이템이 너무 커지지 않도록 함 */
+}
+
+
+
+
